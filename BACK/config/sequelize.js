@@ -7,7 +7,7 @@ const sequelize = new Sequelize('test_khouloud', 'root', '', {
   const initDb = async()=>{
     try{
         await sequelize.authenticate() ;
-        console.('Database connected')
+        console.info  ('Database connected')
     }catch(error){
         console.error(error)
     }

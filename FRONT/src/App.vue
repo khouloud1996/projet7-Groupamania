@@ -1,49 +1,74 @@
 <template>
-  <div id="nav">
-    <router-view/>
+  <div>
+    <div id="navlogo">
+      <a href="/"> <img id="logo" src="./assets/logo.png" alt="logo"/></a>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><router-link to="/">Accueil</router-link></li>
+        <li><router-link to="/profile"> Profil</router-link></li>
+        <li>
+          <a to="/" v-on:click="Logout()">
+            <span class="deco">Déconnexion</span></a
+          >
+        </li>
+      </ul>
+    </nav>
+    <header />
+    <router-view />
   </div>
 </template>
-
+//----------------------------------------------------------------------------------------------------------------------
+<script>
+export default {
+  methods: {
+    Logout() {
+      localStorage.clear();
+      this.$router.replace("/login");
+    },
+  },
+};
+</script>
+//----------------------------------------------------------------------------------------------------------------------
 <style>
 body {
-  margin: 0;
+  background-color: #d6dfe2;
 }
-
+#logo {
+  width: 400px;
+  max-width: 80%;
+}
+#navlogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #31bcc6;
+  margin: -10px -10px 0px -10px;
+  height: 90px;
+}
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d2fafa;
+  margin: 0px -10px 0px -10px;
+  height: 40px;
+}
+nav li {
+  display: inline-block;
+  margin: 0 8px;
+}
+.deco {
+  color: rgb(216, 41, 41);
+  cursor: pointer;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #000000;
 }
-#section_new_post, #post-global {
-  box-shadow: 5px 4px 11px 0px #757575;
-}
-
-p, h2 {
-  margin: 0;
-}
-
-#nav {
-  margin: 0;
-  a {
-    font-weight: bold;
-    color: rgb(214, 214, 214);
-    text-decoration: none;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-
-#delete-btn, #newPost-btn {
-    transition-duration: 0.1s;
-    transform: scale(1);       
-}
-
-#delete-btn:hover, #newPost-btn:hover {
-    transform: scale(1.01);
-}
-
 </style>
