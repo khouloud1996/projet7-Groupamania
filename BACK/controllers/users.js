@@ -41,9 +41,9 @@ exports.signup = (req, res, next) => {
 
     // Permet de vérifier que l'utilisateur que l'on souhaite créer n'existe pas déjà
     db.User.findOne({
-        attributes: ['username' || 'email'],
+        attributes: [ 'email'],
         where: { 
-            username: username, 
+          
             email: email
         }
     })
@@ -52,7 +52,7 @@ exports.signup = (req, res, next) => {
             bcrypt.hash(req.body.password, 10)
             .then(hash => {
                 const user = db.User.build({
-                    username: req.body.username,
+                    
                     email: req.body.email,
                     password: hash,
                     isAdmin: req.body.isAdmin || 0 || false
